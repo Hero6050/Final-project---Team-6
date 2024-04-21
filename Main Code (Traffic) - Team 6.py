@@ -553,3 +553,46 @@ print(f"Moreover, out system looks different and the length between node 10 and 
 # We see that the system works perfectly fine
 trafficSystem1.initializeNetwork()
 trafficSystem1.showNetwork()
+
+# As a final test-case, we will try removing most intersection than add more houses to see how the system changes
+# Removing intersection 12 should remove intersection 6 as well
+trafficSystem1.removeIntersection(intersection12)
+trafficSystem1.removeIntersection(intersection13)
+trafficSystem1.removeIntersection(intersection20)
+trafficSystem1.removeIntersection(intersection17)
+trafficSystem1.removeIntersection(intersection6)
+
+house12 = House("012", intersection19)
+house13 = House("013", intersection15)
+house14 = House("014", intersection9)
+house15 = House("015", intersection1)
+house16 = House("016", intersection19)
+house17 = House("017", intersection8)
+house18 = House("018", intersection21)
+house19 = House("019", intersection10)
+house20 = House("020", intersection4)
+
+# This time, we have to add them to the traffic system as well
+trafficSystem1.addHouse(house12)
+trafficSystem1.addHouse(house13)
+trafficSystem1.addHouse(house14)
+trafficSystem1.addHouse(house15)
+trafficSystem1.addHouse(house16)
+trafficSystem1.addHouse(house17)
+trafficSystem1.addHouse(house18)
+trafficSystem1.addHouse(house19)
+trafficSystem1.addHouse(house20)
+
+# Now lets try printing the results and showcase the graph
+# You would notice that our system function as intended.
+# We will start from node 22 this time
+distances, previous, houses_count = trafficSystem1.dijkstra(intersection22)
+print(f"Shortest distances (from intersection 20): {distances}\n")
+print(f"Shortest distance order (from intersection 20): {previous}\n")
+print(f"Number of houses in each intersection: {houses_count}\n")
+print(f"Order of package distribution: {trafficSystem1.packageDistribution(distances, houses_count)}\n")
+print(f"Notice how removing node 12 removed 6 as well, just as intended. ")
+print(f"This means, you can cut off a whole branch by cutting one intersection.")
+print(f"Notice how the distance between node 5 and node 3 made the algorithm get the other branches first.")
+trafficSystem1.initializeNetwork()
+trafficSystem1.showNetwork()
